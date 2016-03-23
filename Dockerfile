@@ -19,11 +19,13 @@ RUN apt-get install libssl-dev -y
 RUN apt-get install sqlite -y
 RUN apt-get install lib32stdc++6 -y
 COPY . /usr/bin
+chmod 777 kangle.sh
 ADD http://download.kanglesoft.com/src/kangle-3.4.2.tar.gz /
 RUN tar xzf kangle-3.4.2.tar.gz
 WORKDIR /kangle-3.4.2
 RUN ./configure --prefix=/usr/local/kangle
 RUN make && make install
+
 
 RUN mkdir -p $CATALINA_TMPDIR
 VOLUME ["/var/lib/tomcat7/webapps/"]
